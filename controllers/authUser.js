@@ -45,7 +45,7 @@ const registerUser = async (req, res) => {
         // create new user
         const user = await User.create({ name, email, mobile, password: hashPassword })
         return res.status(200).json({
-            status: 'Successfully new user register is done',
+            status: 'new user register is done successfully ',
             user
         })
     } catch (error) {
@@ -87,6 +87,7 @@ const loginUser = async (req, res) => {
         jwt.sign({ name: user.name, email: user.email, mobile: user.mobile, id: user._id }, process.env.JWTSecretKey, {}, (err, token) => {
             if (err) throw err
             return res.cookie('token', token).json({
+                status:'Successful user login',
                 user,
                 token
             })
