@@ -17,7 +17,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-1/2">
+            <div className="relative">
                 <Banner />
             </div>
         </div>
