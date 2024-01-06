@@ -5,6 +5,11 @@ import Register from "./Pages/Register"
 import Login from "./Pages/Login"
 import AddJobPost from "./Pages/AddJobPost"
 import JobDetails from "./Pages/JobDetails"
+import { Toaster } from 'react-hot-toast'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.withCredentialsth = true
 
 function App() {
 
@@ -33,6 +38,7 @@ function App() {
 
   return (
     <>
+      <Toaster position='button-top' toastOptions={{ duration: 4000 }} />
       <RouterProvider router={appRouter} />
     </>
   )

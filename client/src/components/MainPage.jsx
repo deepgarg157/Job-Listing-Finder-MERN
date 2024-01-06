@@ -3,6 +3,7 @@ import Header from "./Header";
 import search from "../assets/search.png"
 import Chips from "./Chips";
 import JobCard from "./JobCard";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
     return (
@@ -24,16 +25,21 @@ const MainPage = () => {
                             </select>
                         </div>
                         <div className="flex">
-                            <Chips skills="Frontend"/>
-                            <Chips skills="CSS"/>
-                            <Chips skills="JavaScript"/>
+                            <Chips skills="Frontend" />
+                            <Chips skills="CSS" />
+                            <Chips skills="JavaScript" />
                         </div>
-                        <p className="text-[#ED5353] font-semibold mt-6 px-[100px] cursor-pointer">Clear</p>
+
+                        <div className="flex flex-col">
+                            <Link to={'/add-job'}><button className="px-3 py-1 bg-[#ED5353] text-white w-1/2 mx-5 rounded-md">+Add Job</button></Link>
+                            <p className="text-[#ED5353] font-semibold px-[100px] cursor-pointer">Clear</p>
+                        </div>
+
                     </div>
                 </div>
-                <JobCard/>
-                <JobCard/>
-                <JobCard/>
+                <JobCard />
+                <JobCard />
+                <JobCard />
             </div>
         </div>
     )

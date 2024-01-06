@@ -29,14 +29,14 @@ const registerUser = async (req, res) => {
         const { name, email, mobile, password } = req.body
         if (!name || !email || !mobile || !password) {
             return res.json({
-                status: 'All fields is required'
+                error: 'All fields is required'
             })
         }
 
         const existUser = await User.findOne({ email })
         if (existUser) {
             return res.json({
-                status: 'User is already exist'
+                error: 'User is already exist'
             })
         }
 
@@ -52,7 +52,7 @@ const registerUser = async (req, res) => {
         })
     } catch (error) {
         return res.json({
-            status: 'Fail',
+            error: 'Fail',
             message: error.message
         })
     }
@@ -65,7 +65,7 @@ const loginUser = async (req, res) => {
         // check all field required
         if (!email || !password) {
             return res.json({
-                status: 'All field is required'
+                error: 'All field is required'
             })
         }
 
@@ -73,7 +73,7 @@ const loginUser = async (req, res) => {
         const user = await User.findOne({ email })
         if (!user) {
             return res.json({
-                status: 'User is not register'
+                error: 'User is not register'
             })
         }
 
@@ -81,7 +81,7 @@ const loginUser = async (req, res) => {
         const matchPassword = await comparePassword(password, user.password)
         if (!matchPassword) {
             return res.json({
-                status: 'password is not matched'
+                error: 'password is not matched'
             })
         }
 
@@ -98,7 +98,7 @@ const loginUser = async (req, res) => {
         })
     } catch (error) {
         return res.json({
-            status: 'Fail',
+            error: 'Fail',
             message: error.message
         })
     }
