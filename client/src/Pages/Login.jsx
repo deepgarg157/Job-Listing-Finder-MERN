@@ -3,10 +3,13 @@ import Banner1 from "../components/Banner1";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import { useDispatch } from "react-redux";
+import { addUserData } from "../utility/userSlice";
 
 const Login = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [user, setUser] = useState(
         {
@@ -28,9 +31,9 @@ const Login = () => {
             })
             if (response.data.status) {
                 toast.success(response.data.status)
-                console.log(response.data.user)
                 localStorage.setItem("token", response.data.token)
-                // navigate('/')
+                dispatch(addUserData(response.data.user))
+                navigate('/')
             }
             else {
                 toast.error(response.data.error)
@@ -39,6 +42,7 @@ const Login = () => {
             console.log(error)
         }
     }
+
     return (
         <div className="flex justify-between">
             <div className="">

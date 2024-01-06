@@ -7,6 +7,8 @@ import AddJobPost from "./Pages/AddJobPost"
 import JobDetails from "./Pages/JobDetails"
 import { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+import { Provider } from "react-redux"
+import appStore from './utility/appStore'
 
 axios.defaults.baseURL = 'http://localhost:8080'
 axios.defaults.withCredentialsth = true
@@ -38,8 +40,10 @@ function App() {
 
   return (
     <>
-      <Toaster position='button-top' toastOptions={{ duration: 4000 }} />
-      <RouterProvider router={appRouter} />
+      <Provider store={appStore}>
+        <Toaster position='button-top' toastOptions={{ duration: 4000 }} />
+        <RouterProvider router={appRouter} />
+      </Provider>
     </>
   )
 }
