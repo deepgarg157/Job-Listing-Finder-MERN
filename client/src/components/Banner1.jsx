@@ -1,7 +1,7 @@
 import React from "react";
 import banner from '../assets/banner.png'
 
-const Banner = () => {
+const Banner1 = () => {
     return (
         <div className="">
             <div className="">
@@ -12,4 +12,4 @@ const Banner = () => {
     )
 }
 
-export default Banner;
+export default Banner1;

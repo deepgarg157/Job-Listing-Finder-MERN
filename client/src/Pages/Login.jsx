@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../components/Banner";
+import Banner1 from "../components/Banner1";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
                 </div>
             </div>
             <div className="relative ">
-                <Banner />
+                <Banner1 />
             </div>
         </div>
     )

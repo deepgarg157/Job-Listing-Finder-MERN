@@ -3,6 +3,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import HomePage from "./Pages/HomePage"
 import Register from "./Pages/Register"
 import Login from "./Pages/Login"
+import AddJobPost from "./Pages/AddJobPost"
+import JobDetails from "./Pages/JobDetails"
 
 function App() {
 
@@ -18,6 +20,14 @@ function App() {
     {
       path: '/login',
       element: <Login />
+    },
+    {
+      path: '/add-job',
+      element: <AddJobPost />
+    },
+    {
+      path: '/job-details',
+      element: <JobDetails />
     }
   ])
 

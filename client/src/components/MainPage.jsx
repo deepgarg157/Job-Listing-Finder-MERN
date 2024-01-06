@@ -12,7 +12,7 @@ const MainPage = () => {
                 <div className=" shadow-[2px_5px_5px_10px_rgba(255,226,226,0.70)] px-14 py-5" >
                     <div className="">
                         <img className="absolute py-3 px-2 w-9" src={search}></img>
-                        <input className="w-full px-10 py-2 rounded-md border border-2" type="text" placeholder="Type any job title"></input>
+                        <input className="w-full px-10 py-2 rounded-md border-2" type="text" placeholder="Type any job title"></input>
                     </div>
                     <div className="flex">
                         <div className="mt-5">

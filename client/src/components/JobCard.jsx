@@ -3,6 +3,7 @@ import group from "../assets/group.png"
 import rupees from "../assets/rupees.png"
 import india from "../assets/india.png"
 import Skills from './Skills'
+import { Link } from 'react-router-dom'
 
 const JobCard = () => {
     return (
@@ -31,7 +32,7 @@ const JobCard = () => {
                         <Skills skill="HTML" />
                     </div>
                     <div>
-                        <button className='px-3 py-1 bg-red-400 rounded-md mt-2 ml-[185px] text-white'>View Details</button>
+                       <Link to={'/job-details'}><button className='px-3 py-1 bg-red-400 rounded-md mt-2 ml-[185px] text-white'>View Details</button></Link>
                     </div>
                 </div>
             </div>
