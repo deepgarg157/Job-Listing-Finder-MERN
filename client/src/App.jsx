@@ -36,8 +36,8 @@ function App() {
       element: <PublicRoute><Login /></PublicRoute>
     },
     {
-      path: '/add-job',
-      element: <AddJobPost />
+      path: '/add-job-post',
+      element: <ProtectedRoute><AddJobPost /></ProtectedRoute>
     },
     {
       path: '/job-details',

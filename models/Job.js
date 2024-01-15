@@ -5,28 +5,11 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    remote: {
-        type: String,
-        emun: ['Remote', 'office'],
-        required: true
-    },
-    skillsRequired: {
-        type: 'String',
-        required: true
-    },
-    recruiterName: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
     logoURL: {
         type: String,
         required: true
     },
-    position: {
+    jobPosition: {
         type: String,
         required: true
     },
@@ -36,7 +19,12 @@ const jobPostSchema = new mongoose.Schema({
     },
     jobType: {
         type: String,
-        enum: ['Full-time', 'Partr-time', 'Intern', 'Travel'],
+        enum: ['Full-time', 'Part-time', 'Intern', 'Travel'],
+        required: true
+    },
+    remote: {
+        type: String,
+        emun: ['Remote', 'Office'],
         required: true
     },
     location: {
@@ -51,6 +39,15 @@ const jobPostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-})
+    skillsRequired: {
+        type: String,
+        required: true
+    },
+    information: {
+        type: String,
+        required: true
+    }
+}
+)
 
 module.exports = mongoose.model('job', jobPostSchema)

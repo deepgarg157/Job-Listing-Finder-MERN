@@ -6,51 +6,56 @@ const jobPosts = async (req, res) => {
         const {
             companyName,
             logoURL,
-            position,
+            jobPosition,
             salary,
             jobType,
             remote,
             location,
             description,
+            about,
             skillsRequired,
-            about
+            information
         } = req.body
+        console.log(req.body)
 
-        const recruiterName = req.body.recruiterName
-        if (!companyName || !logoURL || !position || !salary || !jobType || !remote || !location || !description || !skillsRequired || !about) {
+        if (!companyName || !logoURL || !jobPosition || !salary || !jobType || !remote || !location || !description || !about || !skillsRequired || !information) {
             return res.json({
-                status: 'All field is required'
+                success: false,
+                message: 'All field is required'
             })
         }
 
         const existCompany = await jobPost.findOne({ companyName })
         if (existCompany) {
             return res.json({
-                status: 'job post is already exist'
+                success: false,
+                message: 'job post is already exist'
             })
         }
 
         const jobPosts = await jobPost.create({
             companyName,
             logoURL,
-            position,
+            jobPosition,
             salary,
             jobType,
             remote,
             location,
             description,
-            skillsRequired,
             about,
-            recruiterName
+            skillsRequired,
+            information
         })
         return res.json({
-            status: 'New Job-Posts successfully create',
-            jobPosts
+            success: true,
+            message: 'New Job-Posts successfully create',
+            data: jobPosts
         })
     }
     catch (error) {
+        console.log(error)
         return res.json({
-            status: 'Fail',
+            success: false,
             message: error.message
         })
     }
@@ -63,19 +68,22 @@ const jobPostsEdit = async (req, res) => {
         // if there is no job id
         if (!jobId) {
             return res.status(404).json({
-                status: 'job id not found'
+                success: false,
+                message: 'job id not found'
             })
         }
         const jobPosts = await jobPost.findById(jobId)
 
         const updateJobPost = await jobPost.findByIdAndUpdate(jobId, req.body)
         return res.json({
-            status: 'job post update is successful',
+            success: true,
+            message: 'job post update is successful',
             updateJobPost
         })
     } catch (error) {
+        console.log(error)
         return res.json({
-            status: 'Fail',
+            success: false,
             message: error.message
         })
     }

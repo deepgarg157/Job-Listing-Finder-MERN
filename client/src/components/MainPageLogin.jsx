@@ -52,7 +52,7 @@ const MainPageLogin = () => {
                         </div>
 
                         <div className="flex flex-col">
-                            <Link to={'/add-job'}><button className="py-1 bg-[#ED5353] text-white w-28 mt-5 mx-10 rounded-md">+Add Job</button></Link>
+                            <Link to={'/add-job-post'}><button className="py-1 bg-[#ED5353] text-white w-28 mt-5 mx-10 rounded-md">+Add Job</button></Link>
                         </div>
 
                     </div>
