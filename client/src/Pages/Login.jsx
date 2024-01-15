@@ -26,17 +26,16 @@ const Login = () => {
     const handleLogin = async () => {
         try {
             const { email, password } = user
-            const response = await axios.post('/login', {
+            const response = await axios.post('/api/v1/user/login', {
                 email, password
             })
-            if (response.data.status) {
-                toast.success(response.data.status)
+            if (response.data.success) {
+                toast.success(response.data.message)
                 localStorage.setItem("token", response.data.token)
-                dispatch(addUserData(response.data.user))
                 navigate('/')
             }
             else {
-                toast.error(response.data.error)
+                toast.error(response.data.message)
             }
         } catch (error) {
             console.log(error)

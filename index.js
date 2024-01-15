@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 // Route
 const authUser = require('./Routes/authUser')
 const authJob = require('./Routes/authJob')
-app.use('/', authUser)
-app.use('/auth', authJob)
+app.use('/api/v1/user', authUser)
+app.use('/api/v1/job', authJob)
 
 // Database connect - MongoDB altas
 mongoose.connect(process.env.MongoDB_URL)

@@ -25,11 +25,11 @@ const Register = () => {
     const handleRegister = async () => {
         try {
             const { name, email, mobile, password } = user
-            const response = await axios.post('/register', {
+            const response = await axios.post('/api/v1/user/register', {
                 name, email, mobile, password
             })
-            if (response.data.status) {
-                toast.success(response.data.status)
+            if (response.data.success) {
+                toast.success(response.data.message)
                 navigate('/login')
                 setUser({
                     name: '',
@@ -39,7 +39,7 @@ const Register = () => {
                 })
             }
             else {
-                toast.error(response.data.error)
+                toast.error(response.data.message)
             }
         } catch (error) {
             console.log(error)
