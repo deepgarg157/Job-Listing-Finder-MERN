@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import Header from "./Header";
+import HeaderLogin from "./HeaderLogin";
 import search from "../assets/search.png"
 import Chips from "./Chips";
 import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 
-const MainPage = () => {
-    
+const MainPageLogin = () => {
+
     const getUserData = async () => {
         try {
             await axios.post('/api/v1/user/getUserData', {}, {
@@ -26,7 +26,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <Header />
+            <HeaderLogin />
             <div className="w-[50%] m-auto p-5">
                 <div className=" shadow-[2px_5px_5px_10px_rgba(255,226,226,0.70)] px-14 py-5" >
                     <div className="">
@@ -42,14 +42,17 @@ const MainPage = () => {
                                 <option>JavaScript</option>
                             </select>
                         </div>
-                        <div className="flex">
-                            <Chips skills="Frontend" />
-                            <Chips skills="CSS" />
-                            <Chips skills="JavaScript" />
+                        <div>
+                            <div className="flex">
+                                <Chips skills="Frontend" />
+                                <Chips skills="CSS" />
+                                <Chips skills="JavaScript" />
+                            </div>
+                            <p className="text-[#ED5353] ml-72 mt-1">Clear</p>
                         </div>
 
                         <div className="flex flex-col">
-                            <p className="text-[#ED5353] font-semibold px-[100px] mt-5 cursor-pointer">Clear</p>
+                            <Link to={'/add-job'}><button className="py-1 bg-[#ED5353] text-white w-28 mt-5 mx-10 rounded-md">+Add Job</button></Link>
                         </div>
 
                     </div>
@@ -62,4 +65,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage;
+export default MainPageLogin;

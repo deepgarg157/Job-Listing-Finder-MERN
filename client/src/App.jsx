@@ -9,6 +9,9 @@ import { Toaster } from 'react-hot-toast'
 import axios from 'axios'
 import { Provider } from "react-redux"
 import appStore from './utility/appStore'
+import ProtectedRoute from './components/ProtectedRoute'
+import PublicRoute from './components/PublicRoute'
+import HomePageLogin from './components/MainPageLogin'
 
 axios.defaults.baseURL = 'http://localhost:8080'
 axios.defaults.withCredentialsth = true
@@ -18,15 +21,19 @@ function App() {
   const appRouter = createBrowserRouter([
     {
       path: '/',
-      element: <HomePage />
+      element: <ProtectedRoute><HomePage /></ProtectedRoute>
+    },
+    {
+      path: '/home-login',
+      element: <ProtectedRoute><HomePageLogin /></ProtectedRoute>
     },
     {
       path: '/register',
-      element: <Register />
+      element: <PublicRoute><Register /></PublicRoute>
     },
     {
       path: '/login',
-      element: <Login />
+      element: <PublicRoute><Login /></PublicRoute>
     },
     {
       path: '/add-job',
