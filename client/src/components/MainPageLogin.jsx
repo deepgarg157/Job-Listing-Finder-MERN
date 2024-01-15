@@ -57,9 +57,9 @@ const MainPageLogin = () => {
 
                     </div>
                 </div>
+                {/* <JobCard />
                 <JobCard />
-                <JobCard />
-                <JobCard />
+                <JobCard /> */}
             </div>
         </div>
     )

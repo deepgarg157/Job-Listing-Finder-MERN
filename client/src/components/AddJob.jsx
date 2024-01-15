@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import {toast} from 'react-hot-toast'
+import {useDispatch} from 'react-redux'
+import {setJobPostInfo} from '../utility/jobPostDataSlice'
 
 const AddJob = () => {
 
     const navigate = useNavigate()
     const [jobPostData, setJobPostData] = useState([])
+    const dispatch = useDispatch()
 
     const [jobPost, setJobPost] = useState(
         {
@@ -41,6 +44,8 @@ const AddJob = () => {
             if(res.data.success){
                 toast.success(res.data.message)
                 setJobPostData(res.data.data)
+                dispatch(setJobPostInfo(res.data.data))
+                navigate('/home-login')
             }
             else{
                 toast.error(res.data.message)
@@ -49,7 +54,7 @@ const AddJob = () => {
             console.log(error)
         }
     }
-    
+
     return (
         <>
             <div className="w-[50%] mx-auto mt-10">
