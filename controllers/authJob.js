@@ -1,5 +1,23 @@
 const jobPost = require('../models/Job')
 
+// all job post get
+const allJobPost = async (req, res) => {
+    try {
+        const allJostPosts = await jobPost.find()
+        return res.status(200).json({
+            success: true,
+            message: 'All job post data',
+            data: allJostPosts
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error to fetch job post data"
+        })
+    }
+}
+
 // new job posts create
 const jobPosts = async (req, res) => {
     try {
@@ -16,7 +34,6 @@ const jobPosts = async (req, res) => {
             skillsRequired,
             information
         } = req.body
-        console.log(req.body)
 
         if (!companyName || !logoURL || !jobPosition || !salary || !jobType || !remote || !location || !description || !about || !skillsRequired || !information) {
             return res.json({
@@ -89,4 +106,4 @@ const jobPostsEdit = async (req, res) => {
     }
 }
 
-module.exports = { jobPosts, jobPostsEdit }
+module.exports = { jobPosts, jobPostsEdit, allJobPost }

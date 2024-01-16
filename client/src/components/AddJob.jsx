@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import {toast} from 'react-hot-toast'
-import {useDispatch} from 'react-redux'
-import {setJobPostInfo} from '../utility/jobPostDataSlice'
+import { toast } from 'react-hot-toast'
 
 const AddJob = () => {
 
     const navigate = useNavigate()
     const [jobPostData, setJobPostData] = useState([])
-    const dispatch = useDispatch()
 
     const [jobPost, setJobPost] = useState(
         {
@@ -27,27 +24,28 @@ const AddJob = () => {
         }
     )
 
-    const handleChange = (e)=>{
-        const {value, name} = e.target
-        setJobPost({...jobPost, [name]:value})
+    const handleChange = (e) => {
+        const { value, name } = e.target
+        setJobPost({ ...jobPost, [name]: value })
     }
 
     const handleAddJob = async () => {
         try {
-            const {companyName, logoURL, jobPosition, salary, jobType, remote, location, description, about, skillsRequired, information} = jobPost
-            const res = await axios.post('/api/v1/job/add-job-posts', {companyName, logoURL, jobPosition, salary, jobType, remote, location, description, about, skillsRequired, information}, 
-            {
-                headers:{
-                    Authorization: "Bearer" + " " + localStorage.getItem('token')
-                }
-            })
-            if(res.data.success){
+
+            let { companyName, logoURL, jobPosition, salary, jobType, remote, location, description, about, skillsRequired, information } = jobPost
+            skillsRequired = skillsRequired.split(',')
+            const res = await axios.post('/api/v1/job/add-job-posts', { companyName, logoURL, jobPosition, salary, jobType, remote, location, description, about, skillsRequired, information },
+                {
+                    headers: {
+                        Authorization: "Bearer" + " " + localStorage.getItem('token')
+                    }
+                })
+            if (res.data.success) {
                 toast.success(res.data.message)
                 setJobPostData(res.data.data)
-                dispatch(setJobPostInfo(res.data.data))
                 navigate('/home-login')
             }
-            else{
+            else {
                 toast.error(res.data.message)
             }
         } catch (error) {
@@ -66,7 +64,7 @@ const AddJob = () => {
                     </div>
                     <div className="flex justify-between mt-5">
                         <label className="font-semibold">Add logo URL</label>
-                        <input className="w-[65%] mx-16 border-2 px-3 py-1 rounded-md" type="text" placeholder="Enter the link" name="logoURL" onChange={handleChange} value={jobPost.logoURL}></input>
+                        <input className="w-[65%] mx-16 border-2 px-3 py-1 rounded-md" type="file" accept="image/*" placeholder="Enter the link" name="logoURL" onChange={handleChange} value={jobPost.logoURL}></input>
                     </div>
                     <div className="flex justify-between mt-5">
                         <label className="font-semibold">Job position</label>
@@ -79,7 +77,7 @@ const AddJob = () => {
                     <div className="flex mt-5">
                         <label className="font-semibold">Job Type</label>
                         <select name="jobType" onChange={handleChange} value={jobPost.jobType} className="mx-[137px] border-2 px-3 py-1 rounded-md text-gray-400">
-                            <option>Select</option>
+                            <option value="" disabled selected hidden>Select</option>
                             <option>Full-time</option>
                             <option>Part-time</option>
                             <option>Intern</option>
@@ -89,7 +87,7 @@ const AddJob = () => {
                     <div className="flex mt-5">
                         <label className="font-semibold">Remote/office</label>
                         <select name="remote" onChange={handleChange} value={jobPost.remote} className="mx-[98px] border-2 px-3 py-1 rounded-md text-gray-400">
-                            <option>Select</option>
+                        <option value="" disabled selected hidden>Select</option>
                             <option>Remote</option>
                             <option>Office</option>
                         </select>

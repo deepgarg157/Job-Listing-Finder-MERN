@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import search from "../assets/search.png"
 import Chips from "./Chips";
 import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { toast } from 'react-hot-toast'
 
 const MainPage = () => {
-    
+
+    const [jobData, setJobData] = useState([])
+
+    // authentiaction check function
     const getUserData = async () => {
         try {
             await axios.post('/api/v1/user/getUserData', {}, {
@@ -20,8 +24,29 @@ const MainPage = () => {
         }
     }
 
+    // All job post data fetch
+    const allJobPost = async () => {
+        try {
+            const res = await axios.get('/api/v1/job/all-job-post', {
+                headers: {
+                    Authorization: "Bearer" + " " + localStorage.getItem('token')
+                }
+            })
+            if (res.data.success) {
+                toast.success(res.data.message)
+                setJobData(res.data.data)
+            }
+            else {
+                toast.error(res.data.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getUserData()
+        allJobPost()
     }, [])
 
     return (
@@ -42,21 +67,22 @@ const MainPage = () => {
                                 <option>JavaScript</option>
                             </select>
                         </div>
-                        <div className="flex">
-                            <Chips skills="Frontend" />
-                            <Chips skills="CSS" />
-                            <Chips skills="JavaScript" />
+                        <div>
+                            <div className="flex">
+                                <Chips skills="Frontend" />
+                                <Chips skills="CSS" />
+                                <Chips skills="JavaScript" />
+                            </div>
+                            <p className="text-[#ED5353] ml-72 mt-1">Clear</p>
                         </div>
 
                         <div className="flex flex-col">
-                            <p className="text-[#ED5353] font-semibold px-[100px] mt-5 cursor-pointer">Clear</p>
+                            <Link to={'/add-job-post'}><button className="py-1 bg-[#ED5353] text-white w-28 mt-5 mx-10 rounded-md">+Add Job</button></Link>
                         </div>
 
                     </div>
                 </div>
-                <JobCard />
-                <JobCard />
-                <JobCard />
+                {jobData.map((job) => <JobCard key={job._id} jobDetails={job}/>)}
             </div>
         </div>
     )

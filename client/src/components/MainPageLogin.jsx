@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderLogin from "./HeaderLogin";
 import search from "../assets/search.png"
 import Chips from "./Chips";
 import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { toast } from 'react-hot-toast'
 
 const MainPageLogin = () => {
 
+    const [jobData, setJobData] = useState([])
+
+    // authentiaction check function
     const getUserData = async () => {
         try {
             await axios.post('/api/v1/user/getUserData', {}, {
@@ -20,8 +24,29 @@ const MainPageLogin = () => {
         }
     }
 
+    // All job post data fetch
+    const allJobPost = async () => {
+        try {
+            const res = await axios.get('/api/v1/job/all-job-post', {
+                headers: {
+                    Authorization: "Bearer" + " " + localStorage.getItem('token')
+                }
+            })
+            if (res.data.success) {
+                toast.success(res.data.message)
+                setJobData(res.data.data)
+            }
+            else {
+                toast.error(res.data.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getUserData()
+        allJobPost()
     }, [])
 
     return (
@@ -57,9 +82,7 @@ const MainPageLogin = () => {
 
                     </div>
                 </div>
-                {/* <JobCard />
-                <JobCard />
-                <JobCard /> */}
+                {jobData.map((job) => <JobCard key={job._id} jobDetails={job}/>)}
             </div>
         </div>
     )

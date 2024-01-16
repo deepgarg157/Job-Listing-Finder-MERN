@@ -5,7 +5,7 @@ import jobPostDataSlice from "./jobPostDataSlice";
 const appStore = configureStore({
       reducer :{
        user : userReducer,
-       jobPost:jobPostDataSlice
+       jobPostData:jobPostDataSlice
       }
     });
 
