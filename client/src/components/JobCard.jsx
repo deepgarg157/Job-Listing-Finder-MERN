@@ -5,10 +5,10 @@ import india from "../assets/india.png"
 import Skills from './Skills'
 import { Link } from 'react-router-dom'
 
-const JobCard = ({jobDetails}) => {
-    const {companyName, location, jobType, remote, salary, skillsRequired} = jobDetails
+const JobCard = ({ jobDetails }) => {
+    const { companyName, location, jobType, remote, salary, skillsRequired, _id } = jobDetails
     return (
-        <div className='mt-10 shadow-[2px_5px_5px_10px_rgba(255,226,226,0.70)]'>
+        <div className='relative mt-10 shadow-[2px_5px_5px_10px_rgba(255,226,226,0.70)]'>
             <div className='flex justify-between'>
                 <div className='px-7 py-2'>
                     <p className='font-bold'>{companyName}</p>
@@ -27,11 +27,11 @@ const JobCard = ({jobDetails}) => {
                 </div>
                 <div className='flex flex-col'>
                     <div className='flex'>
-                        {skillsRequired.map((skill)=> <Skills key={skill} skill={skill}/>)}
+                        {skillsRequired.map((skill) => <Skills key={skill} skill={skill} />)}
                     </div>
-                    <div>
-                       <Link to={'/job-details'}><button className='px-3 py-1 bg-red-400 rounded-md mt-2 ml-[185px] text-white'>View Details</button></Link>
-                    </div>
+                </div>
+                <div className='absolute top-14 ml-[600px]'>
+                    <Link to={`/job-details/${_id}`}><button className='px-3 py-1 bg-red-400 rounded-md mt-2 text-white'>View Details</button></Link>
                 </div>
             </div>
         </div>

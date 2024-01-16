@@ -6,10 +6,13 @@ import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import { useDispatch } from "react-redux";
+import { setJobPostInfo } from "../utility/jobPostDataSlice";
 
 const MainPageLogin = () => {
 
     const [jobData, setJobData] = useState([])
+    const dispatch = useDispatch()
 
     // authentiaction check function
     const getUserData = async () => {
@@ -35,6 +38,7 @@ const MainPageLogin = () => {
             if (res.data.success) {
                 toast.success(res.data.message)
                 setJobData(res.data.data)
+                dispatch(setJobPostInfo(res.data.data))
             }
             else {
                 toast.error(res.data.message)
@@ -82,7 +86,15 @@ const MainPageLogin = () => {
 
                     </div>
                 </div>
-                {jobData.map((job) => <JobCard key={job._id} jobDetails={job}/>)}
+                {jobData.map((job) => (
+                    <Link
+                        to={'/job-details/' + job._id}
+                        key={job.id}
+                    >
+                        <JobCard jobDetails={job} />
+                    </Link>
+                )
+                )}
             </div>
         </div>
     )

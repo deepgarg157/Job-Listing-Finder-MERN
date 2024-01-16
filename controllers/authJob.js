@@ -18,6 +18,25 @@ const allJobPost = async (req, res) => {
     }
 }
 
+// all job post get by id
+const allJobPostById = async (req, res) => {
+    const {id} = req.params
+    try {
+        const allJostPosts = await jobPost.findById(id)
+        return res.status(200).json({
+            success: true,
+            message: 'All job post data',
+            data: allJostPosts
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error to fetch job post data"
+        })
+    }
+}
+
 // new job posts create
 const jobPosts = async (req, res) => {
     try {
@@ -106,4 +125,4 @@ const jobPostsEdit = async (req, res) => {
     }
 }
 
-module.exports = { jobPosts, jobPostsEdit, allJobPost }
+module.exports = { jobPosts, jobPostsEdit, allJobPost, allJobPostById }

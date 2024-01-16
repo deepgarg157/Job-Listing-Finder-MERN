@@ -40,7 +40,7 @@ function App() {
       element: <ProtectedRoute><AddJobPost /></ProtectedRoute>
     },
     {
-      path: '/job-details',
+      path: '/job-details/:id',
       element: <JobDetails />
     }
   ])
