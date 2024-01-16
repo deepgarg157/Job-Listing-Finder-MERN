@@ -4,7 +4,7 @@ import Banner2 from "../components/Banner2";
 
 const AddJobPost = () => {
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-between p-5">
             <AddJob />
             <Banner2 />
         </div>

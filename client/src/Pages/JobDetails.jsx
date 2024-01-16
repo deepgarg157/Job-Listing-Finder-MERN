@@ -48,7 +48,7 @@ const JobDetails = () => {
                             <p className="text-center text-xl font-semibold px-32 py-4">{jobDetails.companyName} work from home job/internship at Adyaka Infosec Private Limited</p>
                         </div>
 
-                        <div className="bg-[#FFEFEF] w-[60%] h-[130%] mx-72 top-[180px] absolute px-7">
+                        <div className="bg-[#FFEFEF] w-[60%] h-[140%] mx-72 top-[180px] absolute px-7">
                             <div className="flex">
                                 <p className="pr-4 pt-4 text-sm">1w ago</p>
                                 <p className="pt-4 text-sm">Full Time</p>

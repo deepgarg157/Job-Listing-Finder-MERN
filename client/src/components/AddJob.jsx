@@ -55,7 +55,7 @@ const AddJob = () => {
 
     return (
         <>
-            <div className="w-[50%] mx-auto mt-10">
+            <div className="w-[50%] mx-auto mt-2">
                     <div className="">
                         <h1 className="text-3xl font-bold underline">Add job description</h1>
                         <div className="flex justify-between mt-5">

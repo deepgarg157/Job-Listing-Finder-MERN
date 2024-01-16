@@ -30,7 +30,7 @@ const JobCard = ({ jobDetails }) => {
                         {skillsRequired.map((skill) => <Skills key={skill} skill={skill} />)}
                     </div>
                 </div>
-                <div className='absolute top-14 ml-[600px]'>
+                <div className='absolute top-14 ml-[537px]'>
                     <Link to={`/job-details/${_id}`}><button className='px-3 py-1 bg-red-400 rounded-md mt-2 text-white'>View Details</button></Link>
                 </div>
             </div>

@@ -54,18 +54,16 @@ const MainPageLogin = () => {
     }, [])
 
     return (
-        <div>
+        <>
             <HeaderLogin />
             <div className="w-[50%] m-auto p-5">
-                <div className=" shadow-[2px_5px_5px_10px_rgba(255,226,226,0.70)] px-14 py-5" >
-                    <div className="">
-                        <img className="absolute py-3 px-2 w-9" src={search}></img>
-                        <input className="w-full px-10 py-2 rounded-md border-2" type="text" placeholder="Type any job title"></input>
-                    </div>
+                <div className=" shadow-[2px_5px_5px_10px_rgba(255,226,226,0.70)] px-14 py-4" >
+                    <img className="absolute mt-1 py-2 px-2 w-9" src={search}></img>
+                    <input className="w-full px-10 py-2 rounded-md border-2" type="text" placeholder="Type any job title"></input>
                     <div className="flex">
-                        <div className="mt-5">
+                        <div className="mt-4">
                             <select className="px-3 py-1 rounded-md">
-                                <option>Skills</option>
+                                <option value="" disabled selected hidden>Skills</option>
                                 <option>Frontend</option>
                                 <option>CSS</option>
                                 <option>JavaScript</option>
@@ -77,26 +75,22 @@ const MainPageLogin = () => {
                                 <Chips skills="CSS" />
                                 <Chips skills="JavaScript" />
                             </div>
-                            <p className="text-[#ED5353] ml-72 mt-1">Clear</p>
+                            <p className="text-[#ED5353] ml-72 mt-1 cursor-pointer">Clear</p>
                         </div>
-
-                        <div className="flex flex-col">
-                            <Link to={'/add-job-post'}><button className="py-1 bg-[#ED5353] text-white w-28 mt-5 mx-10 rounded-md">+Add Job</button></Link>
-                        </div>
-
+                        <Link to={'/add-job-post'}><button className="py-1 bg-[#ED5353] text-white w-28 mt-5 mx-10 rounded-md">+Add Job</button></Link>
                     </div>
                 </div>
                 {jobData.map((job) => (
                     <Link
                         to={'/job-details/' + job._id}
-                        key={job.id}
+                        key={job._id}
                     >
                         <JobCard jobDetails={job} />
                     </Link>
                 )
                 )}
             </div>
-        </div>
+        </>
     )
 }
 
